@@ -28,7 +28,7 @@ jobs:
         run: composer archive --format=zip --dir=${{ github.workspace }}/output
 
       - name: Rename package file
-        run: mv ${{ github.workspace }}/output/deand-code-SwaggerBuilder-*.zip ${{ github.workspace }}/output/package.zip
+        run: mv ${{ github.workspace }}/output/deand-code-swagger-builder-*.zip ${{ github.workspace }}/output/package.zip
 
       - name: Get GitHub Actions run number
         id: get_run_number

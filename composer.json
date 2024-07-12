@@ -1,13 +1,7 @@
 {
-  "name": "samueldavis/swagger-builder",
+  "name": "deand-code/swagger-builder",
   "description": "Compile Swagger2.0 JSON using PHP.",
   "type": "project",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:SamuelDavis/SwaggerBuilder.git"
-    }
-  ],
   "license": "MIT",
   "authors": [
     {
