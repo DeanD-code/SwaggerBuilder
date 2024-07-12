@@ -210,17 +210,21 @@ echo str_replace(['\/'], ['/'], json_encode($swagger, JSON_PRETTY_PRINT)) . "\n"
 
 ## Include this version in your php project
 Add this into you composer.json and then you can install from the .zip file that is marked as a release
-`"repositories": [
+```
+"repositories": [
         {
             "type": "vcs",
             "name": "DeanD-code/swaggerbuilder",
             "url": "https://github.com/DeanD-code/swaggerbuilder.git",
             "branch": "master"
         }
-    ],`
+    ],
+```
+Once added then you can use:
 
-    Once added then you can use:
-    `composer instal deand-code/swaggerbuilder`
+```
+composer instal deand-code/swaggerbuilder
+```
 
 
 
