@@ -1,0 +1,56 @@
+name: Publish Composer Package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --ignore-platform-reqs
+
+      - name: Create output directory
+        run: mkdir -p ${{ github.workspace }}/output
+
+      - name: Build package archive
+        run: composer archive --format=zip --dir=${{ github.workspace }}/output
+
+      - name: Rename package file
+        run: mv ${{ github.workspace }}/output/deand-code-SwaggerBuilder-*.zip ${{ github.workspace }}/output/package.zip
+
+      - name: Get GitHub Actions run number
+        id: get_run_number
+        run: echo "::set-output name=run_number::${{ github.run_number }}"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          tag_name: "v1.0.${{ steps.get_run_number.outputs.run_number }}"
+          release_name: "Release v1.0.${{ steps.get_run_number.outputs.run_number }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload Package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/output/package.zip
+          asset_name: package.zip
+          asset_content_type: application/zip
