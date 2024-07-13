@@ -36,15 +36,16 @@ class SchemaTest extends TestCase
             'properties' => [
                 'id' => new Schema(Type::NUMBER),
                 'name' => new Schema(Type::STRING),
+                'istrue' => new Schema(Type::BOOLEAN),
             ],
         ];
 
         $schema = (new Schema($expected['type']))
             ->setExample($expected['example'])
             ->setProperty('id', $expected['properties']['id'], true)
-            ->setProperty('name', $expected['properties']['name']);
+            ->setProperty('name', $expected['properties']['name'])
+            ->setProperty('istrue', $expected['properties']['istrue']);
 
         static::assertComponentStructure($expected, $schema);
     }
 }
-

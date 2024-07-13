@@ -30,6 +30,11 @@ class SchemaFactory
         return new Schema(Type::STRING);
     }
 
+    public function boolean(): Schema
+    {
+        return new Schema(Type::BOOLEAN);
+    }
+
     public function items(Schema $type = null): Schema
     {
         return (new Schema(Type::ARRAY))->setItems($type ?: $this->string);
