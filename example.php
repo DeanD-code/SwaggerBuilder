@@ -23,7 +23,10 @@ $f = new SchemaFactory();
 $petModel = $f->object
     ->setProperty('id', $f->integer(Format::LONG), true)
     ->setProperty('name', $f->string, true)
-    ->setProperty('tag', $f->string);
+    ->setProperty('tag', $f->string)
+    ->setProperty('price', $f->number(Format::DOUBLE))
+    ->setProperty('weight', $f->float)
+    ->setProperty('rating', $f->double);
 
 $errorModel = $f->object
     ->setProperty('code', $f->integer, true)

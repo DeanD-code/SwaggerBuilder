@@ -11,6 +11,10 @@ use SwaggerBuilder\Constants\Type;
  * @property Schema object
  * @property Schema integer
  * @property Schema string
+ * @property Schema boolean
+ * @property Schema number
+ * @property Schema float
+ * @property Schema double
  * @property Schema items
  */
 class SchemaFactory
@@ -33,6 +37,21 @@ class SchemaFactory
     public function boolean(): Schema
     {
         return new Schema(Type::BOOLEAN);
+    }
+
+    public function number(string $format = Format::FLOAT): Schema
+    {
+        return (new Schema(Type::NUMBER))->setFormat($format);
+    }
+
+    public function float(): Schema
+    {
+        return (new Schema(Type::NUMBER))->setFormat(Format::FLOAT);
+    }
+
+    public function double(): Schema
+    {
+        return (new Schema(Type::NUMBER))->setFormat(Format::DOUBLE);
     }
 
     public function items(Schema $type = null): Schema
