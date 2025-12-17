@@ -8,7 +8,7 @@ class Component implements JsonSerializable
 {
     protected $structure = [];
 
-    function jsonSerialize()
+    function jsonSerialize(): mixed
     {
         return $this->structure;
     }
